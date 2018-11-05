@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SA homework</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" 
+></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" 
+></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+></script>
+</head>
+<body>
+    <input type="text" id="msgInput">
+    <button type="button" class="btn btn-primary" onclick="sendMsg()">submit</button>
+</body>
+<script>
+    url="http://localhost:8080/sendMsg"
+    function sendMsg() {
+    message=$("#msgInput")[0].value;
+
+    $.ajax({
+                url: url,
+                type: "POST",
+                data: JSON.stringify({msg:message}),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    alert("send successful!");
+                    },
+                error:function () {
+                    alert("请重试");
+                }
+  }
+)}
+</script>
+</html>

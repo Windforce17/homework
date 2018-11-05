@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SA homework</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<style>
+    .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 100px;
+}
+</style>
+<body>
+    <div class="container">
+<div class="col-md-12" >
+<button type="button" class="btn btn-primary btn-block" onclick="recvMsg()">recv</button>
+        </div>
+    </div>
+
+</body>
+<script>
+var msg
+var s1
+    function recvMsg() {
+        url="http://localhost:8080/recvMsg"; 
+        $.get(url,function(data,state) {
+            msg=data;
+            s1=state;
+            if(msg!='')
+            {
+                alert(msg.msg);
+            }
+            
+        },"json");
+        if(msg==''){
+            alert("no more message");
+        }
+        s1='';
+        msg='';
+    }
+   
+</script>
+</html>
